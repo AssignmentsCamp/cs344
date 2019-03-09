@@ -6,9 +6,17 @@
 ############################################################################
 
 # collect source files
+cmake_minimum_required(VERSION 3.14)
+FIND_PACKAGE(CUDA)
+
+INCLUDE(FindCUDA)
 
 file( GLOB  hdr *.hpp *.h )
 file( GLOB  cu  *.cu)
 SET (HW2_files main.cpp reference_calc.cpp compare.cpp)
-    
+   
+set(CUDA_NVCC_FLAGS_DEBUG "-g -G")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+ 
+
 CUDA_ADD_EXECUTABLE(HW2 ${HW2_files} ${hdr} ${cu})
